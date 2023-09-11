@@ -1,3 +1,11 @@
 {
-    "git.enableCommitSigning": false
+    "git.enableCommitSigning": false,
+    "files.associations": {
+        "*.vue": "vue",
+        "*.hta": "html",
+        "*.c": "c",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    }
 }

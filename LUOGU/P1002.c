@@ -1,5 +1,7 @@
-#include<iostream>
-#include<cstdio>
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<string.h>
 
 int n, m;
 int hx, hy;
@@ -10,7 +12,7 @@ int main(int argc, char* argv[]) {
     scanf("%d%d%d%d", &n, &m, &hx, &hy);
     unsigned long long step(int, int);
     step_record[0][0] = 1;
-    std::cout << step(n, m) << std::endl;
+    printf("%lld\n", step(n, m));
     return 0;
 }
 

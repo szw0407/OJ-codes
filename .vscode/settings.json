@@ -1,5 +1,5 @@
 {
-    "git.enableCommitSigning": false,
+    "git.enableCommitSigning": true,
     "files.associations": {
         "*.vue": "vue",
         "*.hta": "html",

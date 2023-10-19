@@ -1,3 +1,6 @@
-*.exe
-*/*.exe
+*
+!*/*.c*
+!*/*.py
+!.git*
+
 # .vscode/settings.json

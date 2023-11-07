@@ -55,7 +55,6 @@ if s >=0:
         q = res[i]
         for j in range(len(g)):
             res[i+j] -= q*g[j]
-            res[i+j] = res[i+j] % 929
         # ax**5+bx**4+cx**3+dx**2+e
         # x**2-12x+27
         # ax**3 
@@ -65,4 +64,4 @@ if s >=0:
         # (b+12a) x**4 - 12 * (b+12a) x**3 + 27 * (b+12a) x**2
         # 
     for i in range(-s, 0, 1):
-        print(res[i])
+        print(-res[i] % 929)

@@ -44,7 +44,7 @@ if s >=0:
     res.extend([0] * s)
     for i in range(1, s+1):
         g.append(0)
-        p = -3**(i)
+        p = -3**(i) % 929
         k = list(g)
         for j in range(1, i+1):
             g[j] += p*k[j-1]

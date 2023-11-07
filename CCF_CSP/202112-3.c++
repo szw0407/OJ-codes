@@ -2,21 +2,21 @@
 
 using namespace std;
 int main() {
-    // ios::sync_with_stdio(false);
-    // cin.tie(nullptr);
-    // cout.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
     int w, s;
     cin >> w >> s;
     string str;
     int i = 0;
     int j = 0;
-    vector<__int128_t> g = { 1 };
-    vector<__int128_t> vect_2;
+    vector<int> g = { 1 };
+    vector<int> vect_2;
     cin >> str;
     int k = 1;
     vector<char> num;
-    __int128_t p, q;
-    vector<__int128_t>::iterator it2;
+    int p, q;
+    vector<int>::iterator it2;
         for (string::iterator it = str.begin();it < str.end();it++) {
         if ('0' <= *it && *it <= '9') {
             if (k == 1 || k==2) {
@@ -48,11 +48,11 @@ int main() {
     if (num.size() % 2) {
         num.push_back(29);
     }
-    vector<__int128_t> res = { 0 };
+    vector<int> res = { 0 };
     for (i = 0;i < num.size();i += 2) {
         res.push_back(num[i] * 30 + num[i + 1]);
     }
-    __int128_t LEN_OF_CHK;
+    int LEN_OF_CHK;
     if (s >= 0)
         LEN_OF_CHK = pow(2, s + 1);
     else LEN_OF_CHK = 0;
@@ -67,7 +67,7 @@ int main() {
     int tmp;
     for (it2 = res.begin(); it2 < res.end();it2++) {
         tmp = *it2;
-        cout << tmp << endl;
+        cout << tmp << '\n';
     }
     if (s > -1) {
         s = LEN_OF_CHK;
@@ -77,8 +77,6 @@ int main() {
         }
         for (i = 1;i < s + 1;i++) {
             g.push_back(0);
-            // p = -pow(3, i);
-            // p = p % 929 + 929;
             p = 1;
             for (j = 0;j < i;j++) {
                 p *= 3;
@@ -103,7 +101,7 @@ int main() {
             if (tmp < 0) {
                 tmp += 929;
             }
-            cout << tmp << endl;
+            cout << tmp << '\n';
         }
     }
     return 0;

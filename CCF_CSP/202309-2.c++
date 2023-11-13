@@ -10,27 +10,31 @@ int main() {
     int i;
     int j;
     double x, y;
-    int q, r;
-    double op[100000][2];
+    int l, r;
+    double op[100002][2] = { {1,0} };
+    double num;
+    int optnum;
     double k = 1.0;
     double t = 0.0;
-    for (i = 0;i < n;i++) {
-        cin >> op[i][0] >> op[i][1];
+    for (i = 1;i <= n;i++) {
+        cin >> optnum >> num;
+        if (optnum == 1) {
+            k *= num;
+        }
+        else {
+            t += num;
+        }
+        op[i][0] = k;
+        op[i][1] = t;
     }
     for (i = 0;i < m;i++) {
-        cin >> q >> r >> x >> y;
-        k = 1.0;
-        t = 0.0;
-        for (j = q - 1;j < r;j++) {
-            if (op[j][0] == 1) {
-                k *= op[j][1];
-            }
-            else {
-                t += op[j][1];
-            }
-        }
+        cin >> l >> r >> x >> y;
+        l--;
+        
+            t = op[r][1] - op[l][1];
+            k = op[r][0] / op[l][0];
+        
         cout << fixed << (x * cos(t) - y * sin(t)) * k << ' ' << (x * sin(t) + y * cos(t)) * k << '\n';
-
     }
     return 0;
 }

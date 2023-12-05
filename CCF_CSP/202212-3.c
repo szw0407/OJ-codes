@@ -1,6 +1,5 @@
-#include<bits/stdc++.h>
-
-using namespace std;
+#include<stdio.h>
+#include<math.h>
 #define UP 1
 #define DOWN -1
 #define PI acos(-1)

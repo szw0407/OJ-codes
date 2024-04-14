@@ -2,6 +2,8 @@
 !*/
 !*/*.c*
 !*/*.py
+!*/*/*.c*
+!*/*/*.py
 !.git*
 
 # .vscode/settings.json

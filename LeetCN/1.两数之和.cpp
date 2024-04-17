@@ -1,5 +1,13 @@
 #include<bits/stdc++.h>
-using namespace std; // namespace std;
+using namespace std;
+
+/*
+ * @lc app=leetcode.cn id=1 lang=cpp
+ *
+ * [1] 两数之和
+ */
+
+// @lc code=start
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -16,11 +24,13 @@ public:
             if (tmp == i) {
                 continue;
             }
-            res.push_back(tmp);
             res.push_back(i);
+            res.push_back(tmp);
             break;
            }
         }
         return res;
     }
 };
+// @lc code=end
+

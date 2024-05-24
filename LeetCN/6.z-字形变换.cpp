@@ -12,19 +12,30 @@ public:
     string convert(string s, int numRows) {
         if (numRows == 1) return s;
         string res;
-        string tmp[numRows];
-        int j = 1;
-        int d = -1;
         int i;
-        for (i = 0;i < s.size();i++) {
-            j += d;
-            if (j == numRows - 1 || j == 0) {
-                d = -d;
-            }
-            tmp[j].push_back(s[i]);
-        }
+        int j;
+        int tmp;
         for (i = 0;i < numRows;i++) {
-            res.append(tmp[i]);
+            j = i;
+            if (i>=s.size()) break;
+            res.push_back(s[j]);
+            while (j < s.size())
+            {
+                
+                tmp = (numRows - 1 - i) * 2;
+                if (tmp > 0) {
+                    j += tmp;
+                    if (j>=s.size()) break;
+                    res.push_back(s[j]);
+                }
+                tmp = (i) * 2;
+                if (tmp > 0) {
+                    j += tmp;
+                    if (j>=s.size()) break;
+                    res.push_back(s[j]);
+                }
+            }
+            
         }
         return res;
     }

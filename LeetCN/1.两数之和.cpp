@@ -11,23 +11,31 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> ord;
+        unordered_map<int, vector<int>> k = {};
+        int i = 0;
         vector<int> res;
-        int i;
-        int tmp;
         for (i=0;i<nums.size();i++){
-            ord[nums[i]] = i;
-        }
-        for (i=0;i<nums.size();i++){
-           if ( ord.count(target-nums[i])){
-            tmp = ord[target-nums[i]];
-            if (tmp == i) {
-                continue;
+            //k[nums[i]] ;
+            if (k.find(nums[i]) == k.end()){
+                k[nums[i]] = {i};
+            } else {
+                k[nums[i]].push_back(i);
             }
-            res.push_back(i);
-            res.push_back(tmp);
-            break;
-           }
+        }
+        for (auto &j:nums){
+            if (target - j == j){
+                if (k[j].size() > 1) {
+                    res = {k[j][0], k[j][1]};
+                    return res;
+                } else continue;
+            }
+            if (k.find(target - j) == k.end()){
+                ;
+            } else {
+                
+                res = {k[j][0], k[target - j][0]};
+                return res;
+            }
         }
         return res;
     }

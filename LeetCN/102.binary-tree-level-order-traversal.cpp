@@ -64,7 +64,7 @@ public:
 
         // vector<int> l;
         // auto l = new vector<int>();
-        std::vector<int> *l = nullptr;
+        // std::vector<int> *l = nullptr;
         vector<vector<int> > ret;
         q.push(p);
         // l->push_back(p->val);
@@ -75,12 +75,12 @@ public:
             
             if (p == next_line_first) {
                 need_update = true; // next line first is to be updated.
-                if (l)
-                ret.push_back(*l);
-                l = new vector<int>();
-                
+                // if (l)
+                // ret.push_back(*l);
+                // l = new vector<int>();
+                ret.push_back(* new vector<int>());
             }
-            l->push_back(p->val);
+            ret.back().push_back(p->val);
             if (p->left){ q.push(p->left);
             if (need_update) {
                 need_update = false;
@@ -96,7 +96,7 @@ public:
             
             
         }
-        ret.push_back(*l);
+        // ret.push_back(*l);
         return ret;
     }
 

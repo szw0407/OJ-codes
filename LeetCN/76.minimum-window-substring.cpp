@@ -35,9 +35,9 @@ public:
             td[ch]++;
         }
         queue<int> q;
-        // bool status = false;
+        bool status = false;
         string ans = "";
-        // char next_seek = NULL;
+        char next_seek = NULL;
         for (int i=0;i<s.size();i++) {
             char ch  = s[i];
             // if (status){ // to seek for the 1st match
@@ -46,12 +46,19 @@ public:
                 od[ch]++;
                 q.push(i);
                 bool tmp = true;
+                if (status) {
+                    if (ch == next_seek) {
+                        ;
+                    } else continue;
+                } else 
+                {
                 for (auto d:td) {
                     if (td[d.first]>od[d.first]) {
                         tmp = false;
                         break;
                     }
-                }
+                }}
+                
                 if (tmp) {
                     // complete
                     unsigned int f;
@@ -65,7 +72,8 @@ public:
                             // remove duplicated unnecessary front chars
                         }
                     }
-                    // next_seek = s[f];
+                    next_seek = s[f];
+
                     if (i-f+1 < ans.length() || ans.length() == 0)
                     ans = s.substr(f, i-f+1);
 

@@ -25,6 +25,9 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
+bool cmp (const vector<int> &a, const vector<int> &b) {
+        return a[0] < b[0];
+    }
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -32,7 +35,7 @@ public:
         vector<int> t;
         vector<vector<int> > res;
 
-        sort(intervals.begin(),  intervals.end() );
+        sort(intervals.begin(),  intervals.end() , cmp);
         res.push_back(intervals[0]);
         for (int i=1;i<intervals.size();i++) {
             if (intervals[i][0] >= res.back()[0] && intervals[i][0] <= res.back()[1]) {

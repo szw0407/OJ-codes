@@ -103,8 +103,10 @@ public:
         {
             rec.erase(bg->val);
             kvs.erase(bg->val);
+            auto tmp = bg;
             bg = bg->next;
             bg->prev = nullptr;
+            delete tmp;
         }
     }
 };

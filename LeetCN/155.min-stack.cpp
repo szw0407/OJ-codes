@@ -34,35 +34,22 @@ using namespace std;
 // @lc code=start
 class MinStack {
 public:
-    map<int, int> bucket;
     vector<int> items;
-    int min_val = INT_MAX;
+    vector<int> min_vals = {INT_MAX};
     MinStack() {
         
     }
     
     void push(int val) {
-        bucket[val]++;
         items.push_back(val);
-        if (val < min_val) min_val = val;
+        if (val < min_vals.back())
+        min_vals.push_back(val);
+        else min_vals.push_back(min_vals.back());
     }
     
     void pop() {
-        auto tmp = items.back();
-        bucket[tmp]--;
-        if (bucket[tmp] == 0) {
-            bucket.erase(tmp);
-            if (min_val == tmp) {
-                if (bucket.size())
-                for (auto &[k, v] : bucket) {
-                    min_val = k;
-                    break;
-                } else {
-                    min_val = INT_MAX;
-                }
-            }
-        }
         items.pop_back();
+        min_vals.pop_back();
         
     }
     
@@ -71,7 +58,7 @@ public:
     }
     
     int getMin() {
-        return min_val;
+        return min_vals.back();
     }
 };
 

@@ -1,3 +1,10 @@
+// @lcpr-before-debug-begin
+
+
+
+
+// @lcpr-before-debug-end
+
 /*
  * @lc app=leetcode.cn id=189 lang=cpp
  * @lcpr version=30204
@@ -23,25 +30,34 @@ using namespace std;
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <numeric>
 // @lcpr-template-end
 // @lc code=start
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        // for (int i = 0;i<k;i++) {
-            // int t = nums.back();
-            k = k % nums.size();
-            auto t = vector<int>();
-            for (int i = nums.size()-k;i<nums.size();i++) {
-                t.push_back(nums[i]);
-            }
-            for (int j=nums.size()-1;j>=k;j--) {
+        k = k % nums.size();
+        if (k == 0) return;
+        auto loop = gcd(k,nums.size());
+
+        for (unsigned int i = 0;i<loop;i++) {
+            auto p =nums.size()+ i - k;
+            auto bk = nums[p];
+            signed int j = p;
+            while (j!=i)
+            {
+                if (j>=k)
                 nums[j] = nums[j-k];
+                else 
+                nums[j] = nums[j-k+nums.size()];
+                j -= k;
+                if (j < 0) {
+                    j += nums.size();
+                }
             }
-            for (int i=0;i<k;i++) {
-                nums[i] = t[i];
-            }
-        // }
+            nums[i] = bk;
+        }
+
     }
 };
 // @lc code=end
@@ -55,6 +71,10 @@ public:
 
 // @lcpr case=start
 // [-1,-100,3,99]\n2\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1]\n0\n
 // @lcpr case=end
 
  */

@@ -25,32 +25,83 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
+struct Node {
+    Node* parent;
+    vector<Node*> sons;
+    char c;
+};
 class Trie {
 public:
 
     Trie() {
-        
+        root = new Node();
     }
     
     void insert(string word) {
-        storage.insert(word);
         auto t = word.length();
-        for (int i = 1;i<=t;i++) {
-            auto k = word.substr(0, i);
-            pref_cache.insert(k);
+        int i;
+        Node* p = this->root;
+        for (i=0;i<t;i++){
+            auto found=false;
+            Node* k = nullptr;
+            for (auto _k : p->sons) {
+                if (_k->c == word[i]) {found=true;k = _k;break;}
+            }
+            if (!found) {
+                auto _new = new Node();
+                _new->c = word[i];
+                _new->parent = p;
+                p->sons.push_back(_new);
+                p = _new;
+            } else {
+                p = k;
+            }
+            
         }
+        ends.insert(p);
+
     }
     
     bool search(string word) {
-        return storage.contains(word);
+        auto t = word.length();
+        int i;
+        Node* p = this->root;
+        for (i=0;i<t;i++) {
+            
+            Node* k = nullptr;
+            for (auto _k : p->sons) {
+                if (_k->c == word[i]) {k = _k;break;}
+            }
+            if (!k) {
+                return false;
+            }
+            p = k;
+
+        }
+        return (ends.contains(p));
     }
     
     bool startsWith(string prefix) {
-        return pref_cache.contains(prefix);
+                auto t = prefix.length();
+        int i;
+        Node* p = this->root;
+        for (i=0;i<t;i++) {
+            
+            Node* k = nullptr;
+            for (auto _k : p->sons) {
+                if (_k->c == prefix[i]) {k = _k;break;}
+            }
+            if (!k) {
+                return false;
+            }
+            p = k;
+
+        }
+        return true;
     }
 private:
-    unordered_set<string> pref_cache;
-    unordered_set<string> storage;
+    unordered_set<Node*> ends;
+    Node* root;
 };
 
 /**

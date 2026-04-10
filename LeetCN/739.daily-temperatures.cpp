@@ -36,19 +36,19 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         auto ret = vector<int>(temperatures.size(), 0);
-        auto st = vector<pair<int, int>>();
+        auto st = vector<int>();
         // int curr_max = INT_MIN;
-        st.push_back({INT_MIN,INT_MAX});
+        // st.push_back({INT_MIN,INT_MAX});
         int i;
         for (i=0;i<temperatures.size();i++) {
 
                 
 
-            while (temperatures[i] > st.back().second) {
-                ret[st.back().first] = i - st.back().first;
+            while (!st.empty()&&temperatures[i] > temperatures[st.back()]) {
+                ret[st.back()] = i - st.back();
                 st.pop_back();
             }
-            st.push_back({i, temperatures[i]});
+            st.push_back(i);
         }
         return ret;
     }

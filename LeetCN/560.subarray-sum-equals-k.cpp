@@ -39,9 +39,11 @@ public:
         pref_sum[0] = 1;
         auto t = 0;
         auto res = 0;
-        for (int i = 0;i<nums.size();i++) {
-            auto n = nums[i];
-            t+=n;res+=pref_sum[t-k];
+        for (auto n:nums) {
+            
+            t+=n;
+            if (pref_sum.contains(t-k))
+            res+=pref_sum[t-k];
             pref_sum[t]++;
             
             

@@ -44,10 +44,8 @@ public:
         if (a.size() == 1) {
             return a[0]/2;
         }
-        pair<int, int> k = {a[0], a[1]};
-        if (min(k.first, k.second) < a[0]/2) {
-            k = {a[0]/2, a[0]/2};
-        }
+        pair<int, int> k  = {a[0]/2, a[0]/2};
+        
         
         for (i=1;i<a.size();i++) {
             if (min(k.first, k.second) < min(a[i-1], a[i])) {
